@@ -10,27 +10,27 @@ The data that we will be examining throughout the remainder of the entire projec
 
 REC: Regional economic characteristics, with attributes:
 
-- PI.UTIL.OFUSA: This column represents the percentage of the total U.S. population using electricity in a given state, providing insights into the extent of electricity reliance in different regions.
-- PC.REALGSP.STATE: This indicates the percentage of the state’s Gross State Product (GSP) derived from the real estate and utilities sector, highlighting the economic importance of electricity consumption in the state.
+- **PI.UTIL.OFUSA**: This column represents the percentage of the total U.S. population using electricity in a given state, providing insights into the extent of electricity reliance in different regions.
+- **PC.REALGSP.STATE**: This indicates the percentage of the state’s Gross State Product (GSP) derived from the real estate and utilities sector, highlighting the economic importance of electricity consumption in the state.
 
 RLUC: Regional economic land use characteristics, with attributes:
 
-- POPPCT_URBAN: This column provides the percentage of the population living in urban areas, reflecting the level of urbanization and its potential impact on electricity demand.
-- POPDEN_URBAN: The population density in urban areas, which can help identify high-density zones with potentially higher electricity needs.
-- POPDEN_RURAL: The population density in rural areas, which can be compared with urban densities to understand regional differences in electricity consumption patterns.
-- AREAPCT_URBAN: This represents the percentage of a state’s area that is urbanized, which can affect infrastructure and energy demand.
+- **POPPCT_URBAN**: This column provides the percentage of the population living in urban areas, reflecting the level of urbanization and its potential impact on electricity demand.
+- **POPDEN_URBAN**: The population density in urban areas, which can help identify high-density zones with potentially higher electricity needs.
+- **POPDEN_RURAL**: The population density in rural areas, which can be compared with urban densities to understand regional differences in electricity consumption patterns.
+- **AREAPCT_URBAN**: This represents the percentage of a state’s area that is urbanized, which can affect infrastructure and energy demand.
   
 ECI: Electricity consumption info, with attributes:
 
 - RES: Residential electricity consumption, with attributes:
-    - .PERCEN: The percentage of total electricity consumption attributed to residential use in the state.
-    - .CUST.PCT: The percentage of customers in the state that are residential consumers.
+    - **.PERCEN**: The percentage of total electricity consumption attributed to residential use in the state.
+    - **.CUST.PCT**: The percentage of customers in the state that are residential consumers.
 - COM: Commercial electricity consumption, with attributes:
-    - .PERCEN: The percentage of total electricity consumption attributed to commercial use in the state.
-    - .CUST.PCT: The percentage of customers in the state that are commercial consumers.
+    - **.PERCEN**: The percentage of total electricity consumption attributed to commercial use in the state.
+    - **.CUST.PCT**: The percentage of customers in the state that are commercial consumers.
 - IND: Industrial electricity consumption, with attributes:
-    - .PERCEN: The percentage of total electricity consumption attributed to industrial use in the state.
-    - .CUST.PCT: The percentage of customers in the state that are industrial consumers.
+    - **.PERCEN**: The percentage of total electricity consumption attributed to industrial use in the state.
+    - **.CUST.PCT**: The percentage of customers in the state that are industrial consumers.
 
 ---
 
@@ -58,35 +58,35 @@ This scatter plot visualizes the relationship between residential electricity pr
 
 NMAR Analysis:
 
-Upon analyzing the dataset, we believe that the column "Demand.Loss.MW" exhibits characteristics consistent with being NMAR (Not Missing At Random). This column represents the amount of peak demand lost during an outage event, which is likely an estimate. If accurate data is unavailable or if the estimated loss is too high, it is plausible that missing values in this column arise from the uncertainty or unreliability of the estimation, rather than from random sampling. In such cases, the absence of data might be intentional, as we would prefer not to provide potentially misleading or imprecise values.
+Upon analyzing the dataset, we believe that the column "**DEMAND.LOSS.MW**" exhibits characteristics consistent with being NMAR (Not Missing At Random). This column represents the amount of peak demand lost during an outage event, which is likely an estimate. If accurate data is unavailable or if the estimated loss is too high, it is plausible that missing values in this column arise from the uncertainty or unreliability of the estimation, rather than from random sampling. In such cases, the absence of data might be intentional, as we would prefer not to provide potentially misleading or imprecise values.
 
-Similarly, "Cause.CATEGORY.DETAIL" and "Customers.AFFECTED" could also be NMAR. If a detailed cause for the outage is not readily available or the number of affected customers is uncertain, missing values may result from the desire to avoid reporting inaccurate or incomplete information. In these cases, the data is not missing randomly but due to external factors such as a lack of precise knowledge at the time of data collection.
+Similarly, "**CAUSE.CATEGORY.DETAIL**" and "**CUSTOMERS.AFFECTED**" could also be NMAR. If a detailed cause for the outage is not readily available or the number of affected customers is uncertain, missing values may result from the desire to avoid reporting inaccurate or incomplete information. In these cases, the data is not missing randomly but due to external factors such as a lack of precise knowledge at the time of data collection.
 
 To better understand the missingness and determine if these variables can be considered MAR (Missing At Random), additional contextual data could help clarify the reasons behind the missingness. For instance, investigating whether missing values in these columns are more frequent during specific types of events (e.g., large-scale natural disasters vs. localized outages) could provide further insight.
 
 Missingness Dependency:
 
-In our missingness exploration, we performed permutation tests to examine whether missingness in specific columns could be classified as MAR (Missing At Random) or MCAR (Missing Completely At Random). We focused on the column "CAUSE.CATEGORY.DETAIL", which has a significant proportion of missing data, and compared it against other variables with high missingness, such as "OUTAGE.DURATION", "DEMAND.LOSS.MW", and "CUSTOMERS.AFFECTED". The goal was to assess whether the missing data in CAUSE.CATEGORY.DETAIL can be explained by other variables, thus qualifying it as MAR.
+In our missingness exploration, we performed permutation tests to examine whether missingness in specific columns could be classified as MAR (Missing At Random) or MCAR (Missing Completely At Random). We focused on the column "**CAUSE.CATEGORY.DETAIL**", which has a significant proportion of missing data, and compared it against other variables with high missingness, such as "**OUTAGE.DURATION**", "**DEMAND.LOSS.MW**", and "**CUSTOMERS.AFFECTED**". The goal was to assess whether the missing data in **CAUSE.CATEGORY.DETAIL** can be explained by other variables, thus qualifying it as MAR.
 
 The permutation test results are as follows:
 
 Outage Duration:
 
-The p-value for the permutation test comparing missingness in CAUSE.CATEGORY.DETAIL to OUTAGE.DURATION is 0.080. This is above our chosen significance level of 0.05, meaning that we cannot conclude that missing data in CAUSE.CATEGORY.DETAIL is MAR with respect to OUTAGE.DURATION.
+The p-value for the permutation test comparing missingness in **CAUSE.CATEGORY.DETAIL** to **OUTAGE.DURATION** is 0.080. This is above our chosen significance level of 0.05, meaning that we cannot conclude that missing data in **CAUSE.CATEGORY.DETAIL** is MAR with respect to **OUTAGE.DURATION**.
 
 Demand Loss (MW):
 
-Similarly, the p-value for CAUSE.CATEGORY.DETAIL and DEMAND.LOSS.MW is also 0.080, which is not statistically significant at the 0.05 level. Thus, we cannot classify missing data in CAUSE.CATEGORY.DETAIL as MAR with respect to DEMAND.LOSS.MW either.
+Similarly, the p-value for **CAUSE.CATEGORY.DETAIL** and **DEMAND.LOSS.MW** is also 0.080, which is not statistically significant at the 0.05 level. Thus, we cannot classify missing data in **CAUSE.CATEGORY.DETAIL** as MAR with respect to **DEMAND.LOSS.MW** either.
 
 Customers Affected:
 
-The permutation test comparing CAUSE.CATEGORY.DETAIL to CUSTOMERS.AFFECTED yields a p-value of 0.39, which is even higher, indicating that there is no significant relationship between missing data in CAUSE.CATEGORY.DETAIL and CUSTOMERS.AFFECTED.
+The permutation test comparing **CAUSE.CATEGORY.DETAIL** to **CUSTOMERS.AFFECTED** yields a p-value of 0.39, which is even higher, indicating that there is no significant relationship between missing data in **CAUSE.CATEGORY.DETAIL** and **CUSTOMERS.AFFECTED**.
 
 Total Sale (Total Electricity Consumption):
   
-However, when we compare the missingness in CAUSE.CATEGORY.DETAIL to TOTAL.SALE (Total electricity consumption in the state), the p-value is 0.00, which is statistically significant at the 0.05 level. This indicates that missingness in CAUSE.CATEGORY.DETAIL is MAR with respect to TOTAL.SALE. The pattern we observe is that when CAUSE.CATEGORY.DETAIL is missing, there is a much higher total electricity consumption in the state compared to when it is not missing. This suggests that states with low electricity consumption (low TOTAL.SALE) might experience smaller outages, for which detailed causes are less likely to be recorded. On the other hand, states with high electricity consumption have larger outages and more comprehensive reporting standards, increasing the likelihood of detailed cause records.
+However, when we compare the missingness in **CAUSE.CATEGORY.DETAIL** to **TOTAL.SALE** (Total electricity consumption in the state), the p-value is 0.00, which is statistically significant at the 0.05 level. This indicates that missingness in **CAUSE.CATEGORY.DETAIL** is MAR with respect to **TOTAL.SALE**. The pattern we observe is that when **CAUSE.CATEGORY.DETAIL** is missing, there is a much higher total electricity consumption in the state compared to when it is not missing. This suggests that states with low electricity consumption (low **TOTAL.SALE**) might experience smaller outages, for which detailed causes are less likely to be recorded. On the other hand, states with high electricity consumption have larger outages and more comprehensive reporting standards, increasing the likelihood of detailed cause records.
 
-Based on these results, we conclude that CAUSE.CATEGORY.DETAIL is MAR with respect to TOTAL.SALE, but not with respect to OUTAGE.DURATION, DEMAND.LOSS.MW, or CUSTOMERS.AFFECTED. This insight suggests that missingness in CAUSE.CATEGORY.DETAIL is likely influenced by external factors such as the size of the state’s electricity consumption, with larger states more likely to report detailed outage causes.
+Based on these results, we conclude that **CAUSE.CATEGORY.DETAIL** is MAR with respect to **TOTAL.SALE**, but not with respect to **OUTAGE.DURATION**, **DEMAND.LOSS.MW**, or **CUSTOMERS.AFFECTED**. This insight suggests that missingness in **CAUSE.CATEGORY.DETAIL** is likely influenced by external factors such as the size of the state’s electricity consumption, with larger states more likely to report detailed outage causes.
 
 ---
 
@@ -121,18 +121,18 @@ The choice of using the difference in means as the test statistic is appropriate
 
 ## Framing a Prediction Problem
 
-In this project, we are addressing a regression problem aimed at predicting the outage duration for power outages in the United States. Specifically, we are predicting the variable OUTAGE.DURATION using two key predictors: U.S._STATE and CUSTOMERS.AFFECTED. At the time of prediction, we would only have access to information available at the onset of the outage, such as the U.S._STATE and CUSTOMERS.AFFECTED variables. These features are known immediately or early during the outage, making them appropriate for inclusion in the model. We would not use features that depend on information obtained later during or after the outage, ensuring the model is trained with data that would be available at the time of prediction. 
+In this project, we are addressing a regression problem aimed at predicting the outage duration for power outages in the United States. Specifically, we are predicting the variable **OUTAGE.DURATION** using two key predictors: **U.S._STATE** and **CUSTOMERS.AFFECTED**. At the time of prediction, we would only have access to information available at the onset of the outage, such as the **U.S._STATE** and **CUSTOMERS.AFFECTED** variables. These features are known immediately or early during the outage, making them appropriate for inclusion in the model. We would not use features that depend on information obtained later during or after the outage, ensuring the model is trained with data that would be available at the time of prediction. 
 
-- Response Variable: OUTAGE.DURATION
-    - We have chosen OUTAGE.DURATION as the response variable because understanding the duration of power outages is crucial for both operational efficiency and public safety. By predicting how long an outage may last, utilities and emergency services can better plan resources, provide timely updates to affected customers, and improve the overall management of power disruptions.
+- Response Variable: **OUTAGE.DURATION**
+    - We have chosen **OUTAGE.DURATION** as the response variable because understanding the duration of power outages is crucial for both operational efficiency and public safety. By predicting how long an outage may last, utilities and emergency services can better plan resources, provide timely updates to affected customers, and improve the overall management of power disruptions.
 
 - Predictor Variables:
-    - U.S._STATE: The state in which the outage occurs. We believe that regional factors such as infrastructure, state-level regulations, and disaster preparedness can influence the duration of outages.
-    - CUSTOMERS.AFFECTED: The number of customers affected by the outage. Larger outages may result in longer restoration times due to the complexity of restoring service to a larger area, which could provide valuable insight into the duration of the outage.
+    - **U.S._STATE**: The state in which the outage occurs. We believe that regional factors such as infrastructure, state-level regulations, and disaster preparedness can influence the duration of outages.
+    - **CUSTOMERS.AFFECTED**: The number of customers affected by the outage. Larger outages may result in longer restoration times due to the complexity of restoring service to a larger area, which could provide valuable insight into the duration of the outage.
 
-Metric: R-squared (R²)
+Metric: **R-squared (R²)**
 
-To evaluate the quality of our model, we will use R-squared (R²) as the primary metric. This is due to the fact that R-squared measures the proportion of the variance in the dependent variable (OUTAGE.DURATION) that is predictable from the independent variables (U.S._STATE and CUSTOMERS.AFFECTED). This is a widely used metric for regression models as it provides insight into how well the model fits the data and how accurately it can predict the response variable. Finally, by using R-squared over other suitable metrics such as F1-score and accuracy, we are able to gauge the effectiveness of our model in explaining and predicting outage duration based on the chosen features.
+To evaluate the quality of our model, we will use R-squared (R²) as the primary metric. This is due to the fact that R-squared measures the proportion of the variance in the dependent variable (**OUTAGE.DURATION**) that is predictable from the independent variables (**U.S._STATE** and **CUSTOMERS.AFFECTED**). This is a widely used metric for regression models as it provides insight into how well the model fits the data and how accurately it can predict the response variable. Finally, by using R-squared over other suitable metrics such as F1-score and accuracy, we are able to gauge the effectiveness of our model in explaining and predicting outage duration based on the chosen features.
 
 ---
 
@@ -145,7 +145,7 @@ In this project, we have built a regression model to predict the **OUTAGE.DURATI
 2. **CUSTOMERS.AFFECTED**: This is a **discrete** feature representing the number of customers affected by the outage. It contains some missing values, which were handled by using an appropriate imputation technique (e.g., replacing missing values with the median or mean of the column). This ensures the model can use the data without losing valuable information from rows with missing values.
 
 #### Model Performance
-The model’s **R-squared (R²)** value is **0.0272**, which suggests that the features used in the model (U.S._STATE and CUSTOMERS.AFFECTED) explain only about 2.7% of the variance in the **OUTAGE.DURATION**. This low R-squared indicates that while the model does provide some prediction capability, it is not yet capturing the majority of the factors influencing outage duration. 
+The model’s **R-squared (R²)** value is **0.0272**, which suggests that the features used in the model (**U.S._STATE** and **CUSTOMERS.AFFECTED**) explain only about 2.7% of the variance in the **OUTAGE.DURATION**. This low R-squared indicates that while the model does provide some prediction capability, it is not yet capturing the majority of the factors influencing outage duration. 
 
 Given this result, it is clear that additional features or more sophisticated preprocessing and modeling techniques are needed to improve the predictive power of the model. As of now, the model does not perform particularly well, and further refinement and feature engineering are necessary to achieve better accuracy in predicting outage durations.
 
