@@ -37,3 +37,10 @@ ECI: Electricity consumption info, with attributes:
 ## Data Cleaning and Exploratory Data Analysis
 
 There wasn't much cleaning involved with our data due to the fact that it was already presented to us in a readable and tidy format, but there were still missing components and other items that we had to deal with before making any analyses on our data. In the data cleaning process, we started by removing the first row, which contained unit labels as a subset of unwanted metadata rather than actual data that we were interested in. This was done by selecting all rows from index 1 onward utilizing the code snippet (data[1:]). Next, we eliminated any columns that contained only missing (NaN) values across all rows. This step, accomplished with the code snippet (dropna(axis=1, how='all')), ensured that only relevant and non-empty columns were retained, reducing the possibility of including uninformative or incomplete columns in our analysis. Finally, we reset the index of the cleaned DataFrame using the code snippet (reset_index(drop=True)) to ensure a sequential index, which helps maintain consistency and avoid any index-related issues that could arise from dropping rows or columns. These data cleaning steps were crucial for ensuring that the dataset was ready for analysis. Removing the units row eliminated potential confusion in interpreting the values, while dropping columns with excessive NaN values reduced noise in the data. By resetting the index, we ensured that the remaining rows are properly aligned, preventing any potential indexing errors during subsequent analysis. Overall, these cleaning steps helped to improve the accuracy and reliability of our analyses that were performed later on, ensuring that insights drawn from the data are based on valid and complete information.
+
+<iframe
+  src="assets/urban_rural_plot.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
