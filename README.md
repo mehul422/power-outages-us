@@ -56,7 +56,7 @@ This scatter plot visualizes the relationship between residential electricity pr
 
 ## Assessment of Missingness
 
-- NMAR Analysis:
+NMAR Analysis:
 
 Upon analyzing the dataset, we believe that the column "Demand.Loss.MW" exhibits characteristics consistent with being NMAR (Not Missing At Random). This column represents the amount of peak demand lost during an outage event, which is likely an estimate. If accurate data is unavailable or if the estimated loss is too high, it is plausible that missing values in this column arise from the uncertainty or unreliability of the estimation, rather than from random sampling. In such cases, the absence of data might be intentional, as we would prefer not to provide potentially misleading or imprecise values.
 
@@ -64,7 +64,7 @@ Similarly, "Cause.CATEGORY.DETAIL" and "Customers.AFFECTED" could also be NMAR. 
 
 To better understand the missingness and determine if these variables can be considered MAR (Missing At Random), additional contextual data could help clarify the reasons behind the missingness. For instance, investigating whether missing values in these columns are more frequent during specific types of events (e.g., large-scale natural disasters vs. localized outages) could provide further insight.
 
-- Missingness Dependency:
+Missingness Dependency:
 
 In our missingness exploration, we performed permutation tests to examine whether missingness in specific columns could be classified as MAR (Missing At Random) or MCAR (Missing Completely At Random). We focused on the column "CAUSE.CATEGORY.DETAIL", which has a significant proportion of missing data, and compared it against other variables with high missingness, such as "OUTAGE.DURATION", "DEMAND.LOSS.MW", and "CUSTOMERS.AFFECTED". The goal was to assess whether the missing data in CAUSE.CATEGORY.DETAIL can be explained by other variables, thus qualifying it as MAR.
 
@@ -116,3 +116,20 @@ Based on the results of the permutation test and the p-value of 0.559, we conclu
 Justification:
 
 The choice of using the difference in means as the test statistic is appropriate for comparing the central tendency of outage durations between two independent groups (above vs. below average electricity prices). We used the permutation test as a test which is robust to assumptions about the underlying distribution of the data, especially when the data might not follow a normal distribution. The permutation test also accounts for the possibility that the observed difference in means could arise by chance, providing a more reliable measure of statistical significance.
+
+---
+
+## Framing a Prediction Problem
+
+In this project, we are addressing a regression problem aimed at predicting the outage duration for power outages in the United States. Specifically, we are predicting the variable OUTAGE.DURATION using two key predictors: U.S._STATE and CUSTOMERS.AFFECTED. At the time of prediction, we would only have access to information available at the onset of the outage, such as the U.S._STATE and CUSTOMERS.AFFECTED variables. These features are known immediately or early during the outage, making them appropriate for inclusion in the model. We would not use features that depend on information obtained later during or after the outage, ensuring the model is trained with data that would be available at the time of prediction. 
+
+- Response Variable: OUTAGE.DURATION
+    - We have chosen OUTAGE.DURATION as the response variable because understanding the duration of power outages is crucial for both operational efficiency and public safety. By predicting how long an outage may last, utilities and emergency services can better plan resources, provide timely updates to affected customers, and improve the overall management of power disruptions.
+
+- Predictor Variables:
+    - U.S._STATE: The state in which the outage occurs. We believe that regional factors such as infrastructure, state-level regulations, and disaster preparedness can influence the duration of outages.
+    - CUSTOMERS.AFFECTED: The number of customers affected by the outage. Larger outages may result in longer restoration times due to the complexity of restoring service to a larger area, which could provide valuable insight into the duration of the outage.
+
+Metric: R-squared (R²)
+
+To evaluate the quality of our model, we will use R-squared (R²) as the primary metric. This is due to the fact that R-squared measures the proportion of the variance in the dependent variable (OUTAGE.DURATION) that is predictable from the independent variables (U.S._STATE and CUSTOMERS.AFFECTED). This is a widely used metric for regression models as it provides insight into how well the model fits the data and how accurately it can predict the response variable. Finally, by using R-squared over other suitable metrics such as F1-score and accuracy, we are able to gauge the effectiveness of our model in explaining and predicting outage duration based on the chosen features.
