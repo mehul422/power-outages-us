@@ -38,7 +38,7 @@ ECI: Electricity consumption info, with attributes:
 
 There wasn't much cleaning involved with our data due to the fact that it was already presented to us in a readable and tidy format, but there were still missing components and other items that we had to deal with before making any analyses on our data. In the data cleaning process, we started by removing the first row, which contained unit labels as a subset of unwanted metadata rather than actual data that we were interested in. This was done by selecting all rows from index 1 onward utilizing the code snippet (data[1:]). Next, we eliminated any columns that contained only missing (NaN) values across all rows. This step, accomplished with the code snippet (dropna(axis=1, how='all')), ensured that only relevant and non-empty columns were retained, reducing the possibility of including uninformative or incomplete columns in our analysis. Finally, we reset the index of the cleaned DataFrame using the code snippet (reset_index(drop=True)) to ensure a sequential index, which helps maintain consistency and avoid any index-related issues that could arise from dropping rows or columns. These data cleaning steps were crucial for ensuring that the dataset was ready for analysis. Removing the units row eliminated potential confusion in interpreting the values, while dropping columns with excessive NaN values reduced noise in the data. By resetting the index, we ensured that the remaining rows are properly aligned, preventing any potential indexing errors during subsequent analysis. Overall, these cleaning steps helped to improve the accuracy and reliability of our analyses that were performed later on, ensuring that insights drawn from the data are based on valid and complete information.
 
-<!DOCTYPE html>
+<!DOCTYPE html> (ignore tag, just for rendering purposes :)
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -518,3 +518,24 @@ We chose the LinearRegression modeling algorithm, a simple yet extremely effecti
 
 ## Fairness Analysis
 
+In this analysis, we are specifically using fairness to evaluate whether our model predicts outage durations equally well across different climate conditions, specifically between warm and cold climates. By assessing fairness through the model that we trained, we aim to ensure that the model’s performance is not biased toward any particular group, and that it generalizes well regardless of climate type of warm and cold, respectively. This helps in identifying whether the model is providing reliable and just predictions across diverse scenarios, which is crucial for making informed decisions based on the model’s outputs, providing a strong external and ecological validity that is effectively able to generalize these findings within the real-world. 
+
+- Group X: Warm climate
+- Group Y: Cold climate
+
+- Evaluation Metric: Root Mean Squared Error (RMSE)
+
+- Hypotheses:
+    - Null Hypothesis (H₀): The model predicts outage durations with equal accuracy between warm and cold climates. In other words, there is no significant difference in the accuracy of the model’s predictions for both groups.
+    - Alternative Hypothesis (H₁): The model does not predict outage durations with equal accuracy between warm and cold climates. This means there is a significant difference in the model's performance for these two groups.
+
+- Test Statistic and Significance Level:
+    - Test Statistic: Mean Absolute Difference between the predicted outage durations for warm and cold climates.
+    - Significance Level (α): 0.05 (5%)
+  
+- Results:
+    - P-value: 0.9132
+
+Conclusion:
+
+Based on the p-value of 0.9132, which is greater than the significance level of 0.05, we fail to reject the null hypothesis. This means that there is insufficient evidence to conclude that the model predicts outage durations with different levels of accuracy between warm and cold climates. Therefore, we cannot definitively say that the model performs differently for these two climate conditions.
