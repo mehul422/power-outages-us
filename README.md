@@ -44,3 +44,76 @@ There wasn't much cleaning involved with our data due to the fact that it was al
   height="600"
   frameborder="0"
 ></iframe>
+This boxplot visualizes the population density in urban versus rural areas across the continental United States. The plot reveals a clear trend: urban areas have a significantly higher population density compared to rural areas, with most urban population densities concentrated in the higher ranges. The interquartile range (IQR) for urban areas is notably larger, indicating greater variation in density within cities, whereas rural areas exhibit a more uniform, lower population density distribution.
+
+<iframe
+  src="assets/electricity_duration.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+This scatter plot visualizes the relationship between residential electricity prices (in cents per kWh) and the duration of power outages (in minutes) across various regions. As shown by the graph, there is a clear trend between when residential electricity prices are lower, outages tend to happen a lot more frequently, as explained by poor infrastructural foundations in some rural or urban regions; however, we see some interesting trends where higher residential electricity prices around the 15-25 cents per kWH mark tend to have more outages than most of the clustered plots when residential electricity prices are pretty low in standard, suggesting a plausible explanation that maybe companies such as SCE have flaws within their internal systems.
+
+---
+
+## Assessment of Missingness
+
+# NMAR Analysis
+
+Upon analyzing the dataset, we believe that the column "Demand.Loss.MW" exhibits characteristics consistent with being NMAR (Not Missing At Random). This column represents the amount of peak demand lost during an outage event, which is likely an estimate. If accurate data is unavailable or if the estimated loss is too high, it is plausible that missing values in this column arise from the uncertainty or unreliability of the estimation, rather than from random sampling. In such cases, the absence of data might be intentional, as we would prefer not to provide potentially misleading or imprecise values.
+
+Similarly, "Cause.CATEGORY.DETAIL" and "Customers.AFFECTED" could also be NMAR. If a detailed cause for the outage is not readily available or the number of affected customers is uncertain, missing values may result from the desire to avoid reporting inaccurate or incomplete information. In these cases, the data is not missing randomly but due to external factors such as a lack of precise knowledge at the time of data collection.
+
+To better understand the missingness and determine if these variables can be considered MAR (Missing At Random), additional contextual data could help clarify the reasons behind the missingness. For instance, investigating whether missing values in these columns are more frequent during specific types of events (e.g., large-scale natural disasters vs. localized outages) could provide further insight.
+
+# Missingness Dependency
+In our missingness exploration, we performed permutation tests to examine whether missingness in specific columns could be classified as MAR (Missing At Random) or MCAR (Missing Completely At Random). We focused on the column "CAUSE.CATEGORY.DETAIL", which has a significant proportion of missing data, and compared it against other variables with high missingness, such as "OUTAGE.DURATION", "DEMAND.LOSS.MW", and "CUSTOMERS.AFFECTED". The goal was to assess whether the missing data in CAUSE.CATEGORY.DETAIL can be explained by other variables, thus qualifying it as MAR.
+
+The permutation test results are as follows:
+
+- Outage Duration:
+
+The p-value for the permutation test comparing missingness in CAUSE.CATEGORY.DETAIL to OUTAGE.DURATION is 0.080. This is above our chosen significance level of 0.05, meaning that we cannot conclude that missing data in CAUSE.CATEGORY.DETAIL is MAR with respect to OUTAGE.DURATION.
+
+- Demand Loss (MW):
+
+Similarly, the p-value for CAUSE.CATEGORY.DETAIL and DEMAND.LOSS.MW is also 0.080, which is not statistically significant at the 0.05 level. Thus, we cannot classify missing data in CAUSE.CATEGORY.DETAIL as MAR with respect to DEMAND.LOSS.MW either.
+
+- Customers Affected:
+
+The permutation test comparing CAUSE.CATEGORY.DETAIL to CUSTOMERS.AFFECTED yields a p-value of 0.39, which is even higher, indicating that there is no significant relationship between missing data in CAUSE.CATEGORY.DETAIL and CUSTOMERS.AFFECTED.
+
+- Total Sale (Total Electricity Consumption):
+  
+However, when we compare the missingness in CAUSE.CATEGORY.DETAIL to TOTAL.SALE (Total electricity consumption in the state), the p-value is 0.00, which is statistically significant at the 0.05 level. This indicates that missingness in CAUSE.CATEGORY.DETAIL is MAR with respect to TOTAL.SALE. The pattern we observe is that when CAUSE.CATEGORY.DETAIL is missing, there is a much higher total electricity consumption in the state compared to when it is not missing. This suggests that states with low electricity consumption (low TOTAL.SALE) might experience smaller outages, for which detailed causes are less likely to be recorded. On the other hand, states with high electricity consumption have larger outages and more comprehensive reporting standards, increasing the likelihood of detailed cause records.
+
+Based on these results, we conclude that CAUSE.CATEGORY.DETAIL is MAR with respect to TOTAL.SALE, but not with respect to OUTAGE.DURATION, DEMAND.LOSS.MW, or CUSTOMERS.AFFECTED. This insight suggests that missingness in CAUSE.CATEGORY.DETAIL is likely influenced by external factors such as the size of the state’s electricity consumption, with larger states more likely to report detailed outage causes.
+
+---
+
+## Hypothesis Testing
+
+Our null and alternative hypotheses are defined as follows:
+
+- Null Hypothesis (H₀): People who pay above-average residential electricity prices experience the same outage duration as those who pay below-average electricity prices.
+- Alternative Hypothesis (H₁): People who pay above-average residential electricity prices experience shorter outage durations than those who pay below-average electricity prices.
+
+- Test Statistic:
+
+We will use the difference in means as our test statistic. The difference in means will help us assess whether there is a significant difference in the outage durations between the two groups (above-average residential electricity prices vs. below-average residential electricity prices).
+
+- Significance Level:
+
+The significance level (α) is set to 0.05. This is a commonly used threshold to determine whether we can reject the null hypothesis.
+
+- P-value:
+
+The resulting p-value is 0.559. This p-value is greater than our chosen significance level of 0.05, which means we fail to reject the null hypothesis. There is no significant evidence to suggest that people who pay above-average residential electricity prices have shorter outage durations compared to those who pay below-average electricity prices.
+
+- Conclusion:
+
+Based on the results of the permutation test and the p-value of 0.559, we conclude that there is little to no evidence to support the claim that people who pay above-average residential electricity prices experience shorter outage durations than those who pay below-average prices. While the average outage duration is higher for people who pay above-average electricity prices, this difference is not statistically significant, and we cannot draw a causal relationship between the two variables.
+
+- Justification:
+
+The choice of using the difference in means as the test statistic is appropriate for comparing the central tendency of outage durations between two independent groups (above vs. below average electricity prices). We used the permutation test as a test which is robust to assumptions about the underlying distribution of the data, especially when the data might not follow a normal distribution. The permutation test also accounts for the possibility that the observed difference in means could arise by chance, providing a more reliable measure of statistical significance.
