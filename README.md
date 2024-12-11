@@ -1,3 +1,2 @@
-# power-outages-us
-This is a culminating project for Practice and Applications of Data Science at UCSD.
-Edit #1, This website is pretty cool
+# Power Outages in the Continental United States (January 2000 - June 2016)
+Mehul Verma, Terran Chow
