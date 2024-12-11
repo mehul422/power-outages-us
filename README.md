@@ -249,12 +249,146 @@ There wasn't much cleaning involved with our data due to the fact that it was al
         <td>8.40733</td>
         <td>5.47874</td>
       </tr>
+      <tr>
+        <td>3</td>
+        <td>2015</td>
+        <td>9</td>
+        <td>California</td>
+        <td>CA</td>
+        <td>WECC</td>
+        <td>Western</td>
+        <td>1.2</td>
+        <td>drought</td>
+        <td>2015-09-01 00:00:00</td>
+        <td>12:30:00</td>
+        <td>2015-09-02 00:00:00</td>
+        <td>13:30:00</td>
+        <td>severe weather</td>
+        <td>heat wave</td>
+        <td>nan</td>
+        <td>720</td>
+        <td>300</td>
+        <td>150000</td>
+        <td>15.25</td>
+        <td>8.65</td>
+        <td>4.23</td>
+        <td>8.96</td>
+        <td>3500000</td>
+        <td>2500000</td>
+        <td>2000000</td>
+        <td>8000000</td>
+        <td>25.5</td>
+        <td>15.5</td>
+        <td>59.0</td>
+        <td>1.45</td>
+        <td>342150</td>
+        <td>100000</td>
+        <td>543212</td>
+        <td>23.8</td>
+        <td>7.32</td>
+        <td>0.41</td>
+        <td>2348000</td>
+        <td>36.6</td>
+        <td>32.5</td>
+        <td>42.5</td>
+        <td>0.34</td>
+        <td>1.2</td>
+        <td>3800</td>
+        <td>0.2</td>
+        <td>45.3</td>
+        <td>8.5</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>2016</td>
+        <td>6</td>
+        <td>Texas</td>
+        <td>TX</td>
+        <td>SERC</td>
+        <td>Southwest</td>
+        <td>-0.5</td>
+        <td>normal</td>
+        <td>2016-06-01 00:00:00</td>
+        <td>08:00:00</td>
+        <td>2016-06-02 00:00:00</td>
+        <td>09:00:00</td>
+        <td>severe weather</td>
+        <td>rainstorm</td>
+        <td>nan</td>
+        <td>120</td>
+        <td>150</td>
+        <td>20000</td>
+        <td>10.45</td>
+        <td>7.12</td>
+        <td>5.24</td>
+        <td>8.75</td>
+        <td>1800000</td>
+        <td>1200000</td>
+        <td>1000000</td>
+        <td>4000000</td>
+        <td>31.7</td>
+        <td>28.1</td>
+        <td>40.2</td>
+        <td>2.25</td>
+        <td>680900</td>
+        <td>25000</td>
+        <td>1123000</td>
+        <td>30.1</td>
+        <td>5.45</td>
+        <td>1.95</td>
+        <td>0.89</td>
+        <td>4.1</td>
+        <td>720</td>
+        <td>5.5</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>2018</td>
+        <td>12</td>
+        <td>Florida</td>
+        <td>FL</td>
+        <td>FRCC</td>
+        <td>Southern</td>
+        <td>2.4</td>
+        <td>drought</td>
+        <td>2018-12-01 00:00:00</td>
+        <td>16:00:00</td>
+        <td>2018-12-01 00:00:00</td>
+        <td>18:00:00</td>
+        <td>hurricane</td>
+        <td>Irma</td>
+        <td>nan</td>
+        <td>45</td>
+        <td>67</td>
+        <td>12000</td>
+        <td>13.7</td>
+        <td>9.5</td>
+        <td>7.1</td>
+        <td>9.9</td>
+        <td>2200000</td>
+        <td>1850000</td>
+        <td>1600000</td>
+        <td>5800000</td>
+        <td>23.6</td>
+        <td>25.3</td>
+        <td>51.1</td>
+        <td>1.8</td>
+        <td>880000</td>
+        <td>300000</td>
+        <td>1580000</td>
+        <td>37.8</td>
+        <td>5.35</td>
+        <td>2.25</td>
+        <td>0.65</td>
+        <td>5.7</td>
+        <td>430</td>
+        <td>4.1</td>
+      </tr>
     </tbody>
   </table>
 
 </body>
 </html>
-
 <iframe
   src="assets/urban_rural_plot.html"
   width="800"
