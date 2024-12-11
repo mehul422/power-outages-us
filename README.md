@@ -20,16 +20,19 @@ RLUC: Regional economic land use characteristics, with attributes:
 - POPDEN_RURAL: The population density in rural areas, which can be compared with urban densities to understand regional differences in electricity consumption patterns.
 - AREAPCT_URBAN: This represents the percentage of a state’s area that is urbanized, which can affect infrastructure and energy demand.
   
-ECI:
+ECI: Electricity consumption info, with attributes:
 
-RES: Residential electricity consumption, with attributes:
-.PERCEN: The percentage of total electricity consumption attributed to residential use in the state.
-.CUST.PCT: The percentage of customers in the state that are residential consumers.
-COM: Commercial electricity consumption, with attributes:
-.PERCEN: The percentage of total electricity consumption attributed to commercial use in the state.
-.CUST.PCT: The percentage of customers in the state that are commercial consumers.
-IND: Industrial electricity consumption, with attributes:
-.PERCEN: The percentage of total electricity consumption attributed to industrial use in the state.
-.CUST.PCT: The percentage of customers in the state that are industrial consumers.
+- RES: Residential electricity consumption, with attributes:
+    - .PERCEN: The percentage of total electricity consumption attributed to residential use in the state.
+    - .CUST.PCT: The percentage of customers in the state that are residential consumers.
+- COM: Commercial electricity consumption, with attributes:
+    - .PERCEN: The percentage of total electricity consumption attributed to commercial use in the state.
+    - .CUST.PCT: The percentage of customers in the state that are commercial consumers.
+- IND: Industrial electricity consumption, with attributes:
+    - .PERCEN: The percentage of total electricity consumption attributed to industrial use in the state.
+    - .CUST.PCT: The percentage of customers in the state that are industrial consumers.
 
 ---
+
+## Data Cleaning and Exploratory Data Analysis
+
