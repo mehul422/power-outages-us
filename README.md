@@ -133,3 +133,23 @@ In this project, we are addressing a regression problem aimed at predicting the 
 Metric: R-squared (R²)
 
 To evaluate the quality of our model, we will use R-squared (R²) as the primary metric. This is due to the fact that R-squared measures the proportion of the variance in the dependent variable (OUTAGE.DURATION) that is predictable from the independent variables (U.S._STATE and CUSTOMERS.AFFECTED). This is a widely used metric for regression models as it provides insight into how well the model fits the data and how accurately it can predict the response variable. Finally, by using R-squared over other suitable metrics such as F1-score and accuracy, we are able to gauge the effectiveness of our model in explaining and predicting outage duration based on the chosen features.
+
+---
+
+## Baseline Model
+
+In this project, we have built a regression model to predict the **OUTAGE.DURATION**, using the following two features:
+
+1. **U.S._STATE**: This is a **nominal** feature representing the state in which the outage occurs. Since there are multiple unique states, **one-hot encoding** was performed to convert this categorical feature into a set of binary columns, each corresponding to one state. This encoding allows the model to handle the categorical nature of the feature while preserving the distinct information provided by each state.
+
+2. **CUSTOMERS.AFFECTED**: This is a **discrete** feature representing the number of customers affected by the outage. It contains some missing values, which were handled by using an appropriate imputation technique (e.g., replacing missing values with the median or mean of the column). This ensures the model can use the data without losing valuable information from rows with missing values.
+
+#### Model Performance
+The model’s **R-squared (R²)** value is **0.0272**, which suggests that the features used in the model (U.S._STATE and CUSTOMERS.AFFECTED) explain only about 2.7% of the variance in the **OUTAGE.DURATION**. This low R-squared indicates that while the model does provide some prediction capability, it is not yet capturing the majority of the factors influencing outage duration. 
+
+Given this result, it is clear that additional features or more sophisticated preprocessing and modeling techniques are needed to improve the predictive power of the model. As of now, the model does not perform particularly well, and further refinement and feature engineering are necessary to achieve better accuracy in predicting outage durations.
+
+#### Next Steps
+For future iterations of the model, we plan to incorporate additional features, such as **CAUSE.CATEGORY** and **POP.DENSITY.UC / POP.DENSITY.RURAL**, which may offer further insights into the factors affecting outage duration. These features are likely to provide more predictive value, particularly cause-related factors that could explain longer or shorter outage durations, and population density, which may correlate with the scale and complexity of the outages.
+
+By refining our feature set and applying more advanced modeling techniques, we aim to improve the model's performance and increase its ability to predict outage duration more accurately.
